@@ -36,6 +36,8 @@ export default class InputRange extends React.Component {
       onChangeStart: PropTypes.func,
       onChange: PropTypes.func.isRequired,
       onChangeComplete: PropTypes.func,
+      setTrackLengths: PropTypes.bool,
+      setTrackValueEnd: PropTypes.arrayOf(PropTypes.shape({})),
       step: PropTypes.number,
       value: valuePropType,
     };
@@ -48,11 +50,13 @@ export default class InputRange extends React.Component {
    */
   static get defaultProps() {
     return {
-      allowSameValues: false,
+      allowSameValueEnd: false,
       classNames: DEFAULT_CLASS_NAMES,
       disabled: false,
       maxValue: 10,
       minValue: 0,
+      setTrackLengths: false,
+      setTrackValues: {},
       step: 1,
     };
   }
@@ -106,6 +110,13 @@ export default class InputRange extends React.Component {
      * @type {?string}
      */
     this.lastKeyMoved = null;
+
+    if (props.classNames) {
+      this.classNames = {
+        ...DEFAULT_CLASS_NAMES,
+        ...props.classNames,
+      };
+    }
   }
 
   /**
@@ -175,6 +186,18 @@ export default class InputRange extends React.Component {
     return ['max'];
   }
 
+  @autobind
+  getPercentages(values) {
+    const { setTrackLengths, setTrackValueEnd, minValue, maxValue } = this.props;
+
+    if (setTrackLengths) {
+      return {
+        min: '0',
+        max: setTrackValueEnd,
+      };
+    }
+    return valueTransformer.getPercentagesFromValues(values, minValue, maxValue);
+  }
   /**
    * Return true if the difference between the new and the current value is
    * greater or equal to the step amount of the component
@@ -578,6 +601,7 @@ export default class InputRange extends React.Component {
     this.removeDocumentTouchEndListener();
   }
 
+
   /**
    * Return JSX of sliders
    * @private
@@ -654,7 +678,7 @@ export default class InputRange extends React.Component {
   render() {
     const componentClassName = this.getComponentClassName();
     const values = valueTransformer.getValueFromProps(this.props, this.isMultiValue());
-    const percentages = valueTransformer.getPercentagesFromValues(values, this.props.minValue, this.props.maxValue);
+    const percentages = this.getPercentages(values);
 
     return (
       <div
