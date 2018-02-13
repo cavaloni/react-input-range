@@ -88,7 +88,6 @@
     "lint:js": "eslint src/js/ --ext .js --ext .jsx",
     "lint:scss": "sass-lint --verbose --no-exit",
     "prepublish": "npm run build",
-    "pretest": "npm run lint",
     "test": "karma start --single-run",
     "preversion": "npm test",
     "version": "npm run changelog && git add CHANGELOG.md"
