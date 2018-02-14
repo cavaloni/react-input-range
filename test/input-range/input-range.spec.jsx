@@ -513,4 +513,35 @@ describe('InputRange', () => {
     expect(percentages.min).toEqual(expectedResult.min);
     expect(percentages.max).toEqual(expectedResult.max);
   });
+
+  it('should render markers properly', () => {
+    const markers = [{
+      class: 'futzy',
+      percentage: '.40',
+    },
+    {
+      class: 'plumpy',
+      percentage: '.50',
+    }];
+
+    const jsx = (
+      <InputRange
+        name="price"
+        value={5}
+        onChange={() => {}}
+        markers={markers}
+      />
+    );
+
+    const component = mount(jsx);
+
+    const trackChildren = component.find('Track').children();
+    const renderedMarkers = trackChildren.findWhere((wrpr) => {
+      const style = wrpr.prop('style');
+      if (style) return style.position === 'relative';
+      return false;
+    });
+    expect(renderedMarkers.length).toBe(2);
+    expect(renderedMarkers.at(0).prop('style').left).toBe('40%');
+  });
 });

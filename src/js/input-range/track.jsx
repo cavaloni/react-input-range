@@ -21,6 +21,10 @@ export default class Track extends React.Component {
       children: PropTypes.node.isRequired,
       classNames: PropTypes.objectOf(PropTypes.string).isRequired,
       draggableTrack: PropTypes.bool,
+      markers: PropTypes.arrayOf(PropTypes.shape({
+        leftPercent: PropTypes.number,
+        className: PropTypes.string,
+      })),
       onTrackDrag: PropTypes.func,
       onTrackMouseDown: PropTypes.func.isRequired,
       percentages: PropTypes.objectOf(PropTypes.number).isRequired,
@@ -171,6 +175,7 @@ export default class Track extends React.Component {
    * @return {JSX.Element}
    */
   render() {
+    const { markers } = this.props;
     const activeTrackStyle = this.getActiveTrackStyle();
 
     return (
@@ -182,6 +187,14 @@ export default class Track extends React.Component {
         <div
           style={activeTrackStyle}
           className={this.props.classNames.activeTrack} />
+        {markers && markers.map(marker => (
+          <div
+            key={marker.percentage}
+            className={marker.class}
+            style={{
+              position: 'relative', left: `${marker.percentage * 100}%`,
+            }} />
+        ))}
         {this.props.children}
       </div>
     );

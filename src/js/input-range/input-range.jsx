@@ -30,6 +30,10 @@ export default class InputRange extends React.Component {
       disabled: PropTypes.bool,
       draggableTrack: PropTypes.bool,
       formatLabel: PropTypes.func,
+      markers: PropTypes.arrayOf(PropTypes.shape({
+        leftPercent: PropTypes.number,
+        className: PropTypes.string,
+      })),
       maxValue: rangePropType,
       minValue: rangePropType,
       name: PropTypes.string,
@@ -669,6 +673,7 @@ export default class InputRange extends React.Component {
    * @return {JSX.Element}
    */
   render() {
+    const { markers } = this.props;
     const componentClassName = this.getComponentClassName();
     const values = valueTransformer.getValueFromProps(this.props, this.isMultiValue());
     const percentages = this.getPercentages(values);
@@ -695,7 +700,8 @@ export default class InputRange extends React.Component {
           ref={(trackNode) => { this.trackNode = trackNode; }}
           percentages={percentages}
           onTrackDrag={this.handleTrackDrag}
-          onTrackMouseDown={this.handleTrackMouseDown}>
+          onTrackMouseDown={this.handleTrackMouseDown}
+          markers={markers}>
 
           {this.renderSliders()}
         </Track>
