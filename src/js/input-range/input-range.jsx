@@ -110,13 +110,6 @@ export default class InputRange extends React.Component {
      * @type {?string}
      */
     this.lastKeyMoved = null;
-
-    if (props.classNames) {
-      this.classNames = {
-        ...DEFAULT_CLASS_NAMES,
-        ...props.classNames,
-      };
-    }
   }
 
   /**
@@ -190,7 +183,7 @@ export default class InputRange extends React.Component {
   getPercentages(values) {
     const { setTrackLengths, setTrackValueEnd, minValue, maxValue } = this.props;
 
-    if (setTrackLengths) {
+    if (setTrackLengths && setTrackValueEnd) {
       return {
         min: '0',
         max: setTrackValueEnd,

@@ -490,4 +490,27 @@ describe('InputRange', () => {
       expect(InputRange.propTypes.value(props, 'value')).toEqual(jasmine.any(Error));
     });
   });
+
+  it('should set the track length values manually when setTrackLengths is true and the end percentage value is provided', () => {
+    const jsx = (
+      <InputRange
+        name="price"
+        value={5}
+        onChange={() => {}}
+        setTrackLengths
+        setTrackValueEnd={'.40'}
+      />
+    );
+    const component = mount(jsx);
+
+    const track = component.find('Track');
+    const percentages = track.prop('percentages');
+
+    const expectedResult = {
+      min: '0',
+      max: '.40',
+    };
+    expect(percentages.min).toEqual(expectedResult.min);
+    expect(percentages.max).toEqual(expectedResult.max);
+  });
 });
