@@ -27,7 +27,8 @@ export default class Track extends React.Component {
       })),
       onTrackDrag: PropTypes.func,
       onTrackMouseDown: PropTypes.func.isRequired,
-      percentages: PropTypes.objectOf(PropTypes.number).isRequired,
+      percentages: PropTypes.objectOf(
+        PropTypes.oneOfType([PropTypes.string, PropTypes.number])).isRequired,
     };
   }
 
