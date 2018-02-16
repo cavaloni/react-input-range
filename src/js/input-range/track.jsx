@@ -215,8 +215,8 @@ export default class Track extends React.Component {
               style={{
                 position: 'absolute',
                 left: `calc(${marker.percentage * 100}% - ${(
-                  Number(marker.elWidth) / 2
-                ).toString()})`,
+                  marker.elWidth / 2
+                )})`,
                 width: marker.elWidth,
                 textAlign: 'center',
               }}>
