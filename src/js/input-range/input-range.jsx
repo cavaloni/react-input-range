@@ -31,7 +31,7 @@ export default class InputRange extends React.Component {
       draggableTrack: PropTypes.bool,
       formatLabel: PropTypes.func,
       markers: PropTypes.arrayOf(PropTypes.shape({
-        leftPercent: PropTypes.number,
+        percentage: PropTypes.string,
         className: PropTypes.string,
         content: PropTypes.any,
       })),

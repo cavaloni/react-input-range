@@ -23,7 +23,7 @@ export default class Track extends React.Component {
       draggableTrack: PropTypes.bool,
       markers: PropTypes.arrayOf(
         PropTypes.shape({
-          leftPercent: PropTypes.number,
+          percentage: PropTypes.string,
           className: PropTypes.string,
         }),
       ),
@@ -209,15 +209,17 @@ export default class Track extends React.Component {
         />
         {markers &&
           markers.map(marker => (
-            <div
+            <span
               key={marker.percentage}
               className={marker.class}
               style={{
-                position: 'relative',
-                left: `${marker.percentage * 100}%`,
+                position: 'absolute',
+                left: `calc(${marker.percentage * 100}% - ${marker.elWidth})`,
+                width: marker.elWidth,
+                textAlign: 'center',
               }}>
               {marker.content}
-            </div>
+            </span>
           ))}
         {this.props.children}
       </div>
