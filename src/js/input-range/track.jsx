@@ -29,7 +29,7 @@ export default class Track extends React.Component {
       onTrackMouseDown: PropTypes.func.isRequired,
       percentages: PropTypes.objectOf(
         PropTypes.oneOfType([PropTypes.string, PropTypes.number])).isRequired,
-      styles: PropTypes.shape({}),
+      styles: PropTypes.objectOf(PropTypes.shape({})),
     };
   }
 
@@ -178,12 +178,19 @@ export default class Track extends React.Component {
    */
   render() {
     const { markers } = this.props;
-    const activeTrackStyle = this.getActiveTrackStyle();
+    const activeTrackLength = this.getActiveTrackStyle();
+
+    const { track: trackStyle, activeTrack } = this.props.styles;
+
+    const activeTrackStyle = {
+      activeTrack,
+      activeTrackLength,
+    };
 
     return (
       <div
         className={this.props.classNames.track}
-        style={this.props.styles.track}
+        style={trackStyle}
         onMouseDown={this.handleMouseDown}
         onTouchStart={this.handleTouchStart}
         ref={(node) => { this.node = node; }}>

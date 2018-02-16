@@ -30,6 +30,11 @@ export default class ExampleApp extends React.Component {
     return (
       <form className="form">
         <InputRange
+          styles={{
+            track: {
+              background: 'linear-gradient(orange, pink 60%, cyan 70%, yellow 80%)',
+            },
+          }}
           maxValue={20}
           minValue={0}
           value={this.state.value}
