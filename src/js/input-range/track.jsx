@@ -214,7 +214,7 @@ export default class Track extends React.Component {
               className={marker.class}
               style={{
                 position: 'absolute',
-                left: `calc(${marker.percentage * 100}% - ${marker.elWidth})`,
+                left: `calc(${marker.percentage * 100}% - ${marker.elWidth / 2})`,
                 width: marker.elWidth,
                 textAlign: 'center',
               }}>
