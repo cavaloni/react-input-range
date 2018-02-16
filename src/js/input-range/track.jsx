@@ -200,29 +200,31 @@ export default class Track extends React.Component {
         style={trackStyle}
         onMouseDown={this.handleMouseDown}
         onTouchStart={this.handleTouchStart}
-        ref={node => {
+        ref={(node) => {
           this.node = node;
         }}>
         <div
           style={activeTrackStyle}
-          className={this.props.classNames.activeTrack}
-        />
+          className={this.props.classNames.activeTrack} />
         {markers &&
-          markers.map(marker => (
-            <span
-              key={marker.percentage}
-              className={marker.class}
-              style={{
-                position: 'absolute',
-                left: `calc(${marker.percentage * 100}% - ${(
-                  marker.elWidth / 2
-                )})`,
-                width: marker.elWidth,
-                textAlign: 'center',
-              }}>
-              {marker.content}
-            </span>
-          ))}
+          markers.map((marker) => {
+            const left = `calc(${marker.percentage * 100}% - ${Math.round(
+              marker.elWidth / 2,
+            )}px)`;
+            return (
+              <span
+                key={marker.percentage}
+                className={marker.class}
+                style={{
+                  position: 'absolute',
+                  left,
+                  width: marker.elWidth,
+                  textAlign: 'center',
+                }}>
+                {marker.content}
+              </span>
+            );
+          })}
         {this.props.children}
       </div>
     );

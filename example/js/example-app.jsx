@@ -27,19 +27,42 @@ export default class ExampleApp extends React.Component {
   }
 
   render() {
+    const markers = [
+      {
+        percentage: '.70',
+        className: 'slider-marker',
+        content: 'alot',
+        elWidth: '20',
+      },
+      {
+        percentage: '.05',
+        className: 'slider-marker',
+        content: 'alot',
+        elWidth: '20',
+      },
+      {
+        percentage: '.95',
+        className: 'slider-marker',
+        content: 'alot',
+        elWidth: '20',
+      },
+    ];
+
     return (
       <form className="form">
         <InputRange
           styles={{
             track: {
-              background: 'linear-gradient(orange, pink 60%, cyan 70%, yellow 80%)',
+              background:
+                'linear-gradient(orange, pink 60%, cyan 70%, yellow 80%)',
             },
           }}
           maxValue={20}
           minValue={0}
           value={this.state.value}
           onChange={value => this.setState({ value })}
-          onChangeComplete={value => console.log(value)} />
+          onChangeComplete={value => console.log(value)}
+          markers={markers} />
 
         <InputRange
           maxValue={20}
@@ -55,7 +78,9 @@ export default class ExampleApp extends React.Component {
           formatLabel={value => value.toFixed(2)}
           value={this.state.value3}
           onChange={value => this.setState({ value3: value })}
-          onChangeStart={value => console.log('onChangeStart with value =', value)}
+          onChangeStart={value =>
+            console.log('onChangeStart with value =', value)
+          }
           onChangeComplete={value => console.log(value)} />
 
         <InputRange
