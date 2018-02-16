@@ -200,7 +200,7 @@ export default class Track extends React.Component {
         style={trackStyle}
         onMouseDown={this.handleMouseDown}
         onTouchStart={this.handleTouchStart}
-        ref={(node) => {
+        ref={node => {
           this.node = node;
         }}>
         <div
@@ -214,7 +214,9 @@ export default class Track extends React.Component {
               className={marker.class}
               style={{
                 position: 'absolute',
-                left: `calc(${marker.percentage * 100}% - ${marker.elWidth / 2})`,
+                left: `calc(${marker.percentage * 100}% - ${(
+                  Number(marker.elWidth) / 2
+                ).toString()})`,
                 width: marker.elWidth,
                 textAlign: 'center',
               }}>
