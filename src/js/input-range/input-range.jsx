@@ -43,6 +43,7 @@ export default class InputRange extends React.Component {
       setTrackLengths: PropTypes.bool,
       setTrackValueEnd: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
       step: PropTypes.number,
+      styles: PropTypes.shape({}),
       value: valuePropType,
     };
   }
@@ -62,6 +63,9 @@ export default class InputRange extends React.Component {
       setTrackLengths: false,
       setTrackValues: {},
       step: 1,
+      styles: {
+        track: {},
+      },
     };
   }
 
@@ -693,6 +697,7 @@ export default class InputRange extends React.Component {
         onMouseDown={this.handleMouseDown}
         onTouchStart={this.handleTouchStart}>
         <Label
+          styles={this.props.styles}
           classNames={this.classNames}
           formatLabel={this.props.formatLabel}
           type="min">
@@ -700,6 +705,7 @@ export default class InputRange extends React.Component {
         </Label>
 
         <Track
+          styles={this.props.styles}
           classNames={this.classNames}
           draggableTrack={this.props.draggableTrack}
           ref={(trackNode) => { this.trackNode = trackNode; }}
@@ -712,6 +718,7 @@ export default class InputRange extends React.Component {
         </Track>
 
         <Label
+          styles={this.props.styles}
           classNames={this.classNames}
           formatLabel={this.props.formatLabel}
           type="max">
