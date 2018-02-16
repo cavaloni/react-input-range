@@ -183,8 +183,8 @@ export default class Track extends React.Component {
     const { track: trackStyle, activeTrack } = this.props.styles;
 
     const activeTrackStyle = {
-      activeTrack,
-      activeTrackLength,
+      ...activeTrack,
+      ...activeTrackLength,
     };
 
     return (
