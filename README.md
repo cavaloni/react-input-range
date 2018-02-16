@@ -1,3 +1,6 @@
+## Forked for use in project
+This was originally forked from davidchin/react-input-range. For use in larger project. Adds some features that may be trivial for larger scale use and/or too specific to be useful. It fits our needs, however :)
+
 # react-input-range
 
 `InputRange` is a React component allowing users to input numeric values within a specific range. It can accept a single value, or a range of values (min/max). By default, basic styles are applied, but can be overridden depending on your design requirements.
@@ -116,6 +119,10 @@ If this property is set to true, you can drag the entire track.
 
 By default, value labels are displayed as plain numbers. If you want to change the display, you can do so by passing in a function. The function can return something different, i.e.: append a unit, reduce the precision of a number.
 
+#### markers: Array of (Object shape { leftPercent: number, className: string })
+
+Pass an array of markers with the leftPercent being what percentage the marker is from the beginning, left most part of the track, irrespective of the minimum or maximum values. Use the className to style the markers individually (no default style so will not be visible without it).
+
 #### maxValue: number
 
 Set a maximum value for your component. You cannot drag your slider beyond this value.
@@ -139,6 +146,14 @@ Whenever your user starts interacting with your component (i.e.: `onMouseDown`, 
 #### onChangeComplete: (value: number | Range): void
 
 Every mouse / touch event can trigger multiple updates, therefore causing `onChange` callback to fire multiple times. On the other hand, `onChangeComplete` callback only gets called when the user stops dragging.
+
+#### setTrackLengths: bool
+
+Use this to indicate you will be providing values for a specific set value for the 'active' track to be extended over the track. This is used, in our project at least, to color the slider to designate two seperate areas of spread over the track. The active track can then be styled in opposition to the inactive, or background track.
+
+#### setTrackValueEnd: number | string
+
+This is the percentage for the set track length (see immediately above) to extend in relation to the background/inactive track.
 
 #### step: number
 
