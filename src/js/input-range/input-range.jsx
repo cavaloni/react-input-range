@@ -33,6 +33,7 @@ export default class InputRange extends React.Component {
       markers: PropTypes.arrayOf(PropTypes.shape({
         leftPercent: PropTypes.number,
         className: PropTypes.string,
+        content: PropTypes.any,
       })),
       maxValue: rangePropType,
       minValue: rangePropType,

@@ -21,14 +21,17 @@ export default class Track extends React.Component {
       children: PropTypes.node.isRequired,
       classNames: PropTypes.objectOf(PropTypes.string).isRequired,
       draggableTrack: PropTypes.bool,
-      markers: PropTypes.arrayOf(PropTypes.shape({
-        leftPercent: PropTypes.number,
-        className: PropTypes.string,
-      })),
+      markers: PropTypes.arrayOf(
+        PropTypes.shape({
+          leftPercent: PropTypes.number,
+          className: PropTypes.string,
+        }),
+      ),
       onTrackDrag: PropTypes.func,
       onTrackMouseDown: PropTypes.func.isRequired,
       percentages: PropTypes.objectOf(
-        PropTypes.oneOfType([PropTypes.string, PropTypes.number])).isRequired,
+        PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      ).isRequired,
       styles: PropTypes.objectOf(PropTypes.shape({})),
     };
   }
@@ -65,7 +68,8 @@ export default class Track extends React.Component {
    * @return {Object} CSS styles
    */
   getActiveTrackStyle() {
-    const width = `${(this.props.percentages.max - this.props.percentages.min) * 100}%`;
+    const width = `${(this.props.percentages.max - this.props.percentages.min) *
+      100}%`;
     const left = `${this.props.percentages.min * 100}%`;
 
     return { left, width };
@@ -96,7 +100,10 @@ export default class Track extends React.Component {
    * @return {void}
    */
   removeDocumentMouseMoveListener() {
-    this.node.ownerDocument.removeEventListener('mousemove', this.handleMouseMove);
+    this.node.ownerDocument.removeEventListener(
+      'mousemove',
+      this.handleMouseMove,
+    );
   }
 
   /**
@@ -193,18 +200,25 @@ export default class Track extends React.Component {
         style={trackStyle}
         onMouseDown={this.handleMouseDown}
         onTouchStart={this.handleTouchStart}
-        ref={(node) => { this.node = node; }}>
+        ref={(node) => {
+          this.node = node;
+        }}>
         <div
           style={activeTrackStyle}
-          className={this.props.classNames.activeTrack} />
-        {markers && markers.map(marker => (
-          <div
-            key={marker.percentage}
-            className={marker.class}
-            style={{
-              position: 'relative', left: `${marker.percentage * 100}%`,
-            }} />
-        ))}
+          className={this.props.classNames.activeTrack}
+        />
+        {markers &&
+          markers.map(marker => (
+            <div
+              key={marker.percentage}
+              className={marker.class}
+              style={{
+                position: 'relative',
+                left: `${marker.percentage * 100}%`,
+              }}>
+              {marker.content}
+            </div>
+          ))}
         {this.props.children}
       </div>
     );
