@@ -199,7 +199,7 @@ export default class Track extends React.Component {
     const { markers } = this.props;
     const activeTrackLength = this.getActiveTrackStyle();
 
-    const { track: trackStyle, track: activeTrack } = this.props.styles;
+    const { track: trackStyle, active: activeTrack } = this.props.styles;
 
     const { markerWidths } = this.state;
 
