@@ -11,8 +11,11 @@ import PropTypes from 'prop-types';
 export default function Label(props) {
   const labelValue = props.formatLabel ? props.formatLabel(props.children, props.type) : props.children;
 
+  let labelStyle;
+  if (props.styles) labelStyle = props.styles.label;
+
   return (
-    <span className={props.classNames[`${props.type}Label`]}>
+    <span className={props.classNames[`${props.type}Label`]} style={labelStyle} >
       <span className={props.classNames.labelContainer}>
         {labelValue}
       </span>
@@ -31,5 +34,8 @@ Label.propTypes = {
   children: PropTypes.node.isRequired,
   classNames: PropTypes.objectOf(PropTypes.string).isRequired,
   formatLabel: PropTypes.func,
+  styles: PropTypes.shape({
+    label: PropTypes.string,
+  }).isRequired,
   type: PropTypes.string.isRequired,
 };

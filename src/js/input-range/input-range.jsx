@@ -66,6 +66,8 @@ export default class InputRange extends React.Component {
       step: 1,
       styles: {
         track: {},
+        active: {},
+        label: {},
       },
     };
   }

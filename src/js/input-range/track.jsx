@@ -53,6 +53,18 @@ export default class Track extends React.Component {
      */
     this.node = null;
     this.trackDragEvent = null;
+    this.markerRefs = [];
+
+    this.state = {
+      markerWidths: [],
+    };
+  }
+
+  componentDidMount() {
+    // eslint-disable-next-line react/no-did-mount-set-state
+    this.setState({
+      markerWidths: this.markerRefs.map(ref => ref.offsetWidth),
+    });
   }
 
   /**
@@ -187,7 +199,9 @@ export default class Track extends React.Component {
     const { markers } = this.props;
     const activeTrackLength = this.getActiveTrackStyle();
 
-    const { track: trackStyle, activeTrack } = this.props.styles;
+    const { track: trackStyle, track: activeTrack } = this.props.styles;
+
+    const { markerWidths } = this.state;
 
     const activeTrackStyle = {
       ...activeTrack,
@@ -207,18 +221,21 @@ export default class Track extends React.Component {
           style={activeTrackStyle}
           className={this.props.classNames.activeTrack} />
         {markers &&
-          markers.map((marker) => {
-            const left = `calc(${marker.percentage * 100}% - ${Math.round(
-              marker.elWidth / 2,
-            )}px)`;
+          markers.map((marker, idx) => {
+            let left = marker.percentage * 100;
+            if (markerWidths.length) {
+              left = `calc(${marker.percentage * 100}% - ${Math.round(
+                markerWidths[idx] / 2,
+              )}px)`;
+            }
             return (
               <span
                 key={marker.percentage}
+                ref={markerSpan => this.markerRefs.push(markerSpan)}
                 className={marker.class}
                 style={{
                   position: 'absolute',
                   left,
-                  width: marker.elWidth,
                   textAlign: 'center',
                 }}>
                 {marker.content}

@@ -518,12 +518,10 @@ describe('InputRange', () => {
     const markers = [{
       class: 'futzy',
       percentage: '.40',
-      elWidth: '20px',
     },
     {
       class: 'plumpy',
       percentage: '.50',
-      elWidth: '20px',
     }];
 
     const jsx = (
@@ -536,14 +534,15 @@ describe('InputRange', () => {
     );
 
     const component = mount(jsx);
-
+    
     const trackChildren = component.find('Track').children();
     const renderedMarkers = trackChildren.findWhere((wrpr) => {
       const style = wrpr.prop('style');
       if (style) return style.textAlign === 'center';
       return false;
     });
+
     expect(renderedMarkers.length).toBe(2);
-    expect(renderedMarkers.at(0).prop('style').width).toBe('20px');
+    expect(renderedMarkers.at(0).prop('className')).toBe('futzy');
   });
 });
