@@ -1,5 +1,14 @@
 ## Forked for use in project
-This was originally forked from davidchin/react-input-range. For use in larger project. Adds some features that may be trivial for larger scale use and/or too specific to be useful. It fits our needs, however :)
+This was originally forked from davidchin/react-input-range. For use in larger project for Syndio Solutions. Adds some features that may be trivial for larger scale use and/or too specific to be useful. It fits our needs, however :) These features are:
+
+* Markers:
+  + Ability to add markers based off percentage and supply your own styles to it
+* Style objects for dynamic updates for each main component:
+  + Label
+  + Track
+  + Active Track
+* ClassNames object no longer requires providing every className, just those you wish to update.
+
 
 # react-input-range
 
@@ -119,9 +128,9 @@ If this property is set to true, you can drag the entire track.
 
 By default, value labels are displayed as plain numbers. If you want to change the display, you can do so by passing in a function. The function can return something different, i.e.: append a unit, reduce the precision of a number.
 
-#### markers: Array of (Object shape { leftPercent: number, className: string })
+#### markers: Array of (Object shape { percentage: number, className: string, content: any })
 
-Pass an array of markers with the leftPercent being what percentage the marker is from the beginning, left most part of the track, irrespective of the minimum or maximum values. Use the className to style the markers individually (no default style so will not be visible without it).
+Pass an array of markers with the `percentage` being what percentage the marker is from the beginning, left most part of the track, irrespective of the minimum or maximum values. Use the className to style the markers individually (no default style so will not be visible without it). Content supplied will be rendered as children of marker div.
 
 #### maxValue: number
 
@@ -158,6 +167,10 @@ This is the percentage for the set track length (see immediately above) to exten
 #### step: number
 
 The default increment/decrement of your component is 1. You can change that by setting a different number to this property.
+
+### styles: object
+
+Provide style for main track (.track), active track (.active), or label (.label).
 
 #### value: number | Range
 
