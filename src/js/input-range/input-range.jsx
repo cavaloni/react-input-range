@@ -42,7 +42,7 @@ export default class InputRange extends React.Component {
       onChange: PropTypes.func.isRequired,
       onChangeComplete: PropTypes.func,
       setTrackLengths: PropTypes.bool,
-      setTrackValueEnd: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      setTrackValueEnd: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       step: PropTypes.number,
       styles: PropTypes.shape({}),
       value: valuePropType,
