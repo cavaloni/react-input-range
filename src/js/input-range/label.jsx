@@ -36,6 +36,6 @@ Label.propTypes = {
   formatLabel: PropTypes.func,
   styles: PropTypes.shape({
     label: PropTypes.string,
-  }).isRequired,
+  }),
   type: PropTypes.string.isRequired,
 };
