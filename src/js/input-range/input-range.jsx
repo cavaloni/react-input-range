@@ -121,11 +121,6 @@ export default class InputRange extends React.Component {
      * @type {?string}
      */
     this.lastKeyMoved = null;
-
-    this.classNames = {
-      ...DEFAULT_CLASS_NAMES,
-      ...props.classNames,
-    };
   }
 
   /**
@@ -138,18 +133,6 @@ export default class InputRange extends React.Component {
     this.removeDocumentTouchEndListener();
   }
 
-  /**
-   * Return the CSS class name of the component
-   * @private
-   * @return {string}
-   */
-  getComponentClassName() {
-    if (!this.props.disabled) {
-      return this.classNames.inputRange;
-    }
-
-    return this.classNames.disabledInputRange;
-  }
 
   /**
    * Return the bounding rect of the track
@@ -636,11 +619,16 @@ export default class InputRange extends React.Component {
         minValue = values.min;
       }
 
+      const classNames = {
+        ...DEFAULT_CLASS_NAMES,
+        ...this.props.classNames,
+      };
+
       const slider = (
         <Slider
           ariaLabelledby={this.props.ariaLabelledby}
           ariaControls={this.props.ariaControls}
-          classNames={this.classNames}
+          classNames={classNames}
           formatLabel={this.props.formatLabel}
           key={key}
           maxValue={maxValue}
@@ -686,7 +674,11 @@ export default class InputRange extends React.Component {
    */
   render() {
     const { markers } = this.props;
-    const componentClassName = this.getComponentClassName();
+    const classNames = {
+      ...DEFAULT_CLASS_NAMES,
+      ...this.props.classNames,
+    };
+    const componentClassName = classNames.inputRange;
     const values = valueTransformer.getValueFromProps(this.props, this.isMultiValue());
     const percentages = this.getPercentages(values);
 
@@ -701,7 +693,7 @@ export default class InputRange extends React.Component {
         onTouchStart={this.handleTouchStart}>
         <Label
           styles={this.props.styles}
-          classNames={this.classNames}
+          classNames={classNames}
           formatLabel={this.props.formatLabel}
           type="min">
           {this.props.minValue}
@@ -709,7 +701,7 @@ export default class InputRange extends React.Component {
 
         <Track
           styles={this.props.styles}
-          classNames={this.classNames}
+          classNames={classNames}
           draggableTrack={this.props.draggableTrack}
           ref={(trackNode) => { this.trackNode = trackNode; }}
           percentages={percentages}
@@ -722,7 +714,7 @@ export default class InputRange extends React.Component {
 
         <Label
           styles={this.props.styles}
-          classNames={this.classNames}
+          classNames={classNames}
           formatLabel={this.props.formatLabel}
           type="max">
           {this.props.maxValue}
