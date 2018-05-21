@@ -233,6 +233,7 @@ export default class Track extends React.Component {
                 key={marker.percentage}
                 ref={markerSpan => this.markerRefs.push(markerSpan)}
                 className={marker.class}
+                id={marker.id}
                 style={{
                   position: 'absolute',
                   left,
