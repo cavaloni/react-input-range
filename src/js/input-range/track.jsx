@@ -23,7 +23,8 @@ export default class Track extends React.Component {
       draggableTrack: PropTypes.bool,
       markers: PropTypes.arrayOf(
         PropTypes.shape({
-          percentage: PropTypes.string,
+          id: PropTypes.string,
+          percentage: PropTypes.string.isRequired,
           className: PropTypes.string,
         }),
       ),

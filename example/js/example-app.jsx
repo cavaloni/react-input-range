@@ -32,18 +32,21 @@ export default class ExampleApp extends React.Component {
         percentage: '.70',
         className: 'slider-marker',
         content: 'a whole fricking lot',
-        // elWidth: '75',
+        id: 'shit',
+        elWidth: '175',
       },
       {
         percentage: '.05',
         className: 'slider-marker',
         content: 'alot',
+        id: 'shit',
         // elWidth: '75',
       },
       {
         percentage: '.95',
         className: 'slider-marker',
         content: 'alot',
+        id: 'shit',
         // elWidth: '75',
       },
     ];
@@ -64,7 +67,7 @@ export default class ExampleApp extends React.Component {
           onChangeComplete={value => console.log(value)}
           markers={markers} />
 
-        {/* <InputRange
+        <InputRange
           maxValue={20}
           minValue={0}
           disabled
@@ -106,7 +109,7 @@ export default class ExampleApp extends React.Component {
           minValue={0}
           onChange={value => this.setState({ value6: value })}
           onChangeComplete={value => console.log(value)}
-        value={this.state.value6} /> */}
+        value={this.state.value6} />
       </form>
     );
   }
