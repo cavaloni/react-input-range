@@ -32,18 +32,21 @@ export default class ExampleApp extends React.Component {
         percentage: '.70',
         className: 'slider-marker',
         content: 'a whole fricking lot',
-        // elWidth: '75',
+        id: 'shit',
+        elWidth: '175',
       },
       {
         percentage: '.05',
         className: 'slider-marker',
         content: 'alot',
+        id: 'shit',
         // elWidth: '75',
       },
       {
         percentage: '.95',
         className: 'slider-marker',
         content: 'alot',
+        id: 'shit',
         // elWidth: '75',
       },
     ];

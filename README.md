@@ -1,14 +1,24 @@
 ## Forked for use in project
-This was originally forked from davidchin/react-input-range. For use in larger project for Syndio Solutions. Adds some features that may be trivial for larger scale use and/or too specific to be useful. It fits our needs, however :) These features are:
+This was originally forked from davidchin/react-input-range. This fork adds some features that may be trivial for larger scale use and/or too specific to be useful. It fits our needs, however :) These features are:
 
 * Markers:
-  + Ability to add markers based off percentage and supply your own styles to it
+  + Ability to add markers based off percentage and supply your own styles to it, using either classNames or ids
+    + Markers come in the shape of:
+    ```
+      markers: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.string,
+          percentage: PropTypes.string.isRequired,
+          className: PropTypes.string,
+        }),
+      ),
+      ```
 * Style objects for dynamic updates for each main component:
   + Label
   + Track
   + Active Track
 * ClassNames object no longer requires providing every className, just those you wish to update.
-
+* Tests updated
 
 # react-input-range
 
