@@ -235,6 +235,7 @@ export default class Track extends React.Component {
                 ref={markerSpan => this.markerRefs.push(markerSpan)}
                 className={marker.class}
                 id={marker.id}
+                onClick={() => marker.onClick(marker)}
                 style={{
                   position: 'absolute',
                   left,
