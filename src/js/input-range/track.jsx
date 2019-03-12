@@ -220,7 +220,7 @@ export default class Track extends React.Component {
         }}>
         <div
           style={activeTrackStyle}
-          className={this.props.classNames.activeTrack} />
+          className={this.props.classNames.activeTrack}/>
         {markers &&
           markers.map((marker, idx) => {
             let left = marker.percentage * 100;
@@ -235,7 +235,10 @@ export default class Track extends React.Component {
                 ref={markerSpan => this.markerRefs.push(markerSpan)}
                 className={marker.class}
                 id={marker.id}
-                onClick={() => marker.onClick(marker)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  marker.onClick(marker);
+                }}
                 style={{
                   position: 'absolute',
                   left,

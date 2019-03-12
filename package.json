@@ -1,6 +1,6 @@
 {
   "name": "react-marker-slider",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "description": "React component for inputting numeric values within a range, now with a slider",
   "keywords": [
     "react",
